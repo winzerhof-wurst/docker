@@ -7,7 +7,7 @@ services:
         ports:
             - "8082:80"
         volumes:
-            - "$WEINSTEIN_ROOT:/var/www"
+            - "$WIWU_ROOT:/var/www"
     app:
         build:
             context: "$WIWU_ROOT"

@@ -23,6 +23,9 @@ services:
         restart: always
     database:
         image: mariadb:10.0
+        command:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
         environment:
             - "MYSQL_ROOT_PASSWORD=secret"
             - "MYSQL_DATABASE=wiwu"
