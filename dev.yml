@@ -1,0 +1,23 @@
+version: '2'
+services:
+    web:
+        build:
+            context: "$WIWU_ROOT"
+            dockerfile: "deploy/web.dev.docker"
+        ports:
+            - "8082:80"
+        volumes:
+            - "$WEINSTEIN_ROOT:/var/www"
+    app:
+        build:
+            context: "$WIWU_ROOT"
+            dockerfile: "deploy/app.dev.docker"
+        env_file: .env.dev
+        volumes:
+            - "$WIWU_ROOT:/var/www"
+    database:
+        volumes:
+            - ./maria-dev:/var/lib/mysql
+        ports:
+            - "33061:3361"
+

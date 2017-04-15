@@ -1,0 +1,35 @@
+version: '2'
+services:
+    web:
+        image: winzerhofwurst/web
+        links:
+            - app
+        restart: always
+    app:
+        links:
+            - database
+            - cache
+        env_file: .env.prod
+        environment:
+            - "DB_PORT=3306"
+            - "DB_HOST=database"
+            - "DB_DATABASE=wiwu"
+            - "DB_USERNAME=wiwu"
+            - "DB_PASSWORD=wiwu123"
+            - "REDIS_PORT=6379"
+            - "REDIS_HOST=cache"
+            - "CACHE_DRIVER=array"
+            - "SESSION_DRIVER=file"
+        restart: always
+    database:
+        image: mariadb:10.0
+        environment:
+            - "MYSQL_ROOT_PASSWORD=secret"
+            - "MYSQL_DATABASE=wiwu"
+            - "MYSQL_USER=wiwu"
+            - "MYSQL_PASSWORD=wiwu123"
+        restart: always
+    cache:
+        image: redis:3.0
+        restart: always
+

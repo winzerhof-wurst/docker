@@ -1,0 +1,8 @@
+
+.env.*
+!.env.example
+
+storage
+maria-dev
+maria-prod
+maria-testing
