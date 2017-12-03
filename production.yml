@@ -3,7 +3,7 @@ services:
     web:
         image: winzerhofwurst/web:latest
         ports:
-            - "8080:80"
+            - "8080:8080"
         env_file: .env.prod
     database:
         volumes:
