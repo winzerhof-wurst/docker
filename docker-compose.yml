@@ -1,7 +1,6 @@
 version: '3.2'
 services:
     web:
-        image: winzerhofwurst/nginx
         links:
             - cache
             - database
@@ -15,7 +14,6 @@ services:
             - "REDIS_HOST=cache"
             - "CACHE_DRIVER=array"
             - "SESSION_DRIVER=file"
-        env_file: .env.prod
         restart: always
     database:
         image: mariadb:10.0
