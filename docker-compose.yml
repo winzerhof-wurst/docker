@@ -3,13 +3,8 @@ services:
     web:
         image: winzerhofwurst/nginx
         links:
-            - app
-        restart: always
-    app:
-        links:
-            - database
             - cache
-        env_file: .env.prod
+            - database
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=database"
@@ -20,6 +15,7 @@ services:
             - "REDIS_HOST=cache"
             - "CACHE_DRIVER=array"
             - "SESSION_DRIVER=file"
+        env_file: .env.prod
         restart: always
     database:
         image: mariadb:10.0

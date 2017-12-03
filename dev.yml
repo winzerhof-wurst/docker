@@ -3,12 +3,6 @@ services:
     web:
         ports:
             - "8082:80"
-        volumes:
-            - "$WIWU_ROOT:/var/www"
-    app:
-        build:
-            context: "$WIWU_ROOT"
-            dockerfile: "deploy/app.dev.docker"
         env_file: .env.dev
         volumes:
             - "$WIWU_ROOT:/var/www"
@@ -17,4 +11,3 @@ services:
             - ./maria-dev:/var/lib/mysql
         ports:
             - "33061:3361"
-
