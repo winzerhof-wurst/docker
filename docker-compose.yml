@@ -12,8 +12,8 @@ services:
             - "DB_PASSWORD=wiwu123"
             - "REDIS_PORT=6379"
             - "REDIS_HOST=cache"
-            - "CACHE_DRIVER=array"
-            - "SESSION_DRIVER=file"
+            - "CACHE_DRIVER=redis"
+            - "SESSION_DRIVER=redis"
         restart: always
     database:
         image: mariadb:10.0
