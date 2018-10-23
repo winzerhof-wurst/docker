@@ -2,10 +2,16 @@ version: '3.2'
 services:
     web:
         image: winzerhofwurst/web:latest
+        environment:
+            - "CORE_URL=http://core:80"
         ports:
-            - "8080:80"
+            - "8080:8080"
+    core:
+        image: winzerhofwurst/core:latest
         env_file: .env.prod
     database:
         volumes:
-            - ./maria-prod:/var/lib/mysql
+            - db-data:/var/lib/mysql
 
+volumes:
+    db-data:

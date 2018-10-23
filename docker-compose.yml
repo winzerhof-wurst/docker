@@ -1,9 +1,8 @@
 version: '3.2'
 services:
     web:
-        links:
-            - cache
-            - database
+        restart: always
+    core:
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=database"

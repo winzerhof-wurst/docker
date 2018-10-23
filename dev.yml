@@ -1,14 +1,28 @@
 version: '3.2'
 services:
     web:
-        image: winzerhofwurst/webserver
+        build:
+            context: nodeserver
+        ports:
+            - "8084:8080"
+        volumes:
+            - "$WIWU_WEB_ROOT:/app"
+        working_dir: /app
+        environment:
+            - "CORE_URL=http://core:80"
+        entrypoint: "npm-run-all --parallel dev:client dev:server devserver"
+    core:
+        image: winzerhofwurst/core
         ports:
             - "8082:80"
         env_file: .env.dev
         volumes:
-            - "$WIWU_ROOT:/var/www"
+            - "$WIWU_CORE_ROOT:/var/www"
     database:
         volumes:
-            - ./maria-dev:/var/lib/mysql
+            - dev-db-data:/var/lib/mysql
         ports:
             - "33061:3361"
+
+volumes:
+    dev-db-data:
