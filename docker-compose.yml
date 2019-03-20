@@ -44,7 +44,7 @@ services:
             - "MYSQL_USER=magento"
             - "MYSQL_PASSWORD=magento123"
         volumes:
-            - "magento-db-data:/var/lib/mysql/data"
+            - "magento-db-data:/var/lib/mysql"
         restart: always
 
 volumes:
