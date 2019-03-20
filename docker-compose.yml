@@ -1,4 +1,4 @@
-version: '3.2'
+version: "3.2"
 services:
     web:
         restart: always
@@ -28,4 +28,25 @@ services:
     cache:
         image: redis:3.0
         restart: always
+    magento:
+        image: alexcheng/magento2
+        environment:
+            - "MAGENTO_DEFAULT_CURRENCY=EUR"
+            - "MAGENTO_TIMEZONE=Europe/Vienna"
+        volumes:
+            - "magento-data:/var/www/html"
+        restart: always
+    magento-db:
+        image: mysql:5.6.43
+        environment:
+            - "MYSQL_ROOT_PASSWORD=secret"
+            - "MYSQL_DATABASE=magento"
+            - "MYSQL_USER=magento"
+            - "MYSQL_PASSWORD=magento123"
+        volumes:
+            - "magento-db-data:/var/lib/mysql/data"
+        restart: always
 
+volumes:
+    magento-db-data:
+    magento-data:
