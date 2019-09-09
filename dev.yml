@@ -23,11 +23,6 @@ services:
             - dev-db-data:/var/lib/mysql
         ports:
             - "33061:3361"
-    magento:
-        environment:
-            - "MAGENTO_URL=http://local.magento"
-        ports:
-            - "8085:80"
 
 volumes:
     dev-db-data:

@@ -12,9 +12,6 @@ services:
     database:
         volumes:
             - db-data:/var/lib/mysql
-    magento:
-        ports:
-            - "8081:80"
 
 volumes:
     db-data:
